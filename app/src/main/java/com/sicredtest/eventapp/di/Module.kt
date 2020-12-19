@@ -11,7 +11,7 @@ val eventRepositoryModule = module {
 }
 
 val eventViewModel = module {
-    viewModel {
+    single {
          EventViewModel(get())
     }
 }

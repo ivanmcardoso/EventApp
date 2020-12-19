@@ -2,4 +2,8 @@
     <string name="app_name">EventApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description_label">Descrição</string>
+    <string name="check_in_label">CHECK-IN</string>
+    <string name="ic_description_back">back_icon</string>
+    <string name="iv_description_event_image">event_image</string>
 </resources>

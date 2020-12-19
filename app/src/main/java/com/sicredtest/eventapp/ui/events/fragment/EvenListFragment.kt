@@ -19,7 +19,12 @@ class EvenListFragment : Fragment() {
     private val eventViewModel by viewModel<EventViewModel>()
     private val eventList = mutableListOf<Event>()
     private val eventAdapter = EventAdapter(eventList) {
-        Toast.makeText(requireContext(),it.title, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), it.title, Toast.LENGTH_LONG).show()
+        eventViewModel.selectedEventLiveData.value = it
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fl_main_activity_frame, EventDetailFragment())
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onCreateView(

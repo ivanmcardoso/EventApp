@@ -18,7 +18,7 @@ class EventRepository(private val eventService: EventService) {
 
     suspend fun getEvent(id: Int): Event? {
         return try {
-            var result = eventService.getEventDetail(1)
+            var result = eventService.getEventDetail(id)
             result
         } catch (ex: Exception) {
             null
