@@ -1,13 +1,12 @@
-package com.sicredtest.eventapp.ui.events.adapter
+package com.sicredtest.eventapp.view.event.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sicredtest.eventapp.R
-import com.sicredtest.eventapp.databinding.EventListItemBinding
-import com.sicredtest.eventapp.model.Event
+import com.sicredtest.eventapp.data.model.Event
+import com.sicredtest.eventapp.databinding.SingleListItemEventBinding
 import com.squareup.picasso.Picasso
 
 class EventAdapter(
@@ -16,10 +15,10 @@ class EventAdapter(
 ) :
     RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
-    inner class EventViewHolder(private val binding: EventListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class EventViewHolder(private val binding: SingleListItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(event: Event) {
             Picasso.get().load(event.image).into(binding.ivEventListItemImage)
-            binding.tvEventListItemTitle.setText(event.title)
+            binding.tvEventListItemTitle.text = event.title
             binding.tvEventListItemDate.text = event.date.toString()
             binding.tvEventListItemPrice.text = event.price.toString()
             binding.root.setOnClickListener { onItemClick(event) }
@@ -35,8 +34,8 @@ class EventAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        val binding: EventListItemBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context),R.layout.event_list_item, parent, false)
+        val binding: SingleListItemEventBinding =
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context),R.layout.single_list_item_event, parent, false)
         return EventViewHolder(binding)
     }
 }

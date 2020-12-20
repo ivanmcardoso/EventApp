@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.events.fragment.EvenListFragment">
+    tools:context=".view.event.fragment.EvenListFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -20,7 +20,7 @@
         android:id="@+id/rv_event_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/event_list_item"
+        tools:listitem="@layout/single_list_item_event"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

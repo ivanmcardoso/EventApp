@@ -1,17 +1,23 @@
 package com.sicredtest.eventapp.di
 
-import com.sicredtest.eventapp.repository.EventRepository
-import com.sicredtest.eventapp.retrofit.RetrofitConfig
-import com.sicredtest.eventapp.viewmodel.EventViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import com.sicredtest.eventapp.data.remoteDataSource.EventRemoteDataSource
+import com.sicredtest.eventapp.data.repository.EventRepository
+import com.sicredtest.eventapp.data.service.ApiConfig
+import com.sicredtest.eventapp.view.event.viewmodel.EventViewModel
 import org.koin.dsl.module
 
+val eventRemoteDataSource = module {
+    single { EventRemoteDataSource(ApiConfig.eventService) }
+}
+
 val eventRepositoryModule = module {
-    single { EventRepository(RetrofitConfig.eventService) }
+    single { EventRepository(get()) }
 }
 
 val eventViewModel = module {
     single {
-         EventViewModel(get())
+        EventViewModel(get())
     }
 }
+
+fun getAppModules() = listOf(eventRemoteDataSource, eventRepositoryModule, eventViewModel)

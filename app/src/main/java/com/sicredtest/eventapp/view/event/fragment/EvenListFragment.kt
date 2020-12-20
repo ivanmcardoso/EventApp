@@ -1,4 +1,4 @@
-package com.sicredtest.eventapp.ui.events.fragment
+package com.sicredtest.eventapp.view.event.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.sicredtest.eventapp.R
-import com.sicredtest.eventapp.model.Event
-import com.sicredtest.eventapp.ui.events.adapter.EventAdapter
-import com.sicredtest.eventapp.viewmodel.EventViewModel
+import com.sicredtest.eventapp.data.model.Event
+import com.sicredtest.eventapp.view.event.adapter.EventAdapter
+import com.sicredtest.eventapp.view.event.viewmodel.EventViewModel
 import kotlinx.android.synthetic.main.fragment_even_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,7 +20,7 @@ class EvenListFragment : Fragment() {
     private val eventList = mutableListOf<Event>()
     private val eventAdapter = EventAdapter(eventList) {
         Toast.makeText(requireContext(), it.title, Toast.LENGTH_LONG).show()
-        eventViewModel.selectedEventLiveData.value = it
+        eventViewModel.setSelectedEvent(it)
         parentFragmentManager.beginTransaction()
             .replace(R.id.fl_main_activity_frame, EventDetailFragment())
             .addToBackStack(null)

@@ -6,4 +6,10 @@
     <string name="check_in_label">CHECK-IN</string>
     <string name="ic_description_back">back_icon</string>
     <string name="iv_description_event_image">event_image</string>
+    <string name="name">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="check_in">Check-In</string>
+    <string name="save_values_text">Guardar informações</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">cancelar</string>
 </resources>

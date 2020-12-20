@@ -1,11 +1,12 @@
-package com.sicredtest.eventapp
+package com.sicredtest.eventapp.view.event.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import com.sicredtest.eventapp.ui.events.fragment.EvenListFragment
+import com.sicredtest.eventapp.R
+import com.sicredtest.eventapp.view.event.fragment.EvenListFragment
 
-class MainActivity : AppCompatActivity() {
+class EventMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

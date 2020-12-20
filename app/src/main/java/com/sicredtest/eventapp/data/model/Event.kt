@@ -1,7 +1,11 @@
-package com.sicredtest.eventapp.model
+package com.sicredtest.eventapp.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Event (
-    val people: List<Any?>? = null,
+    val people: List<CheckIn>? = null,
     val date: Long? = null,
     val description: String? = null,
     val image: String? = null,
@@ -10,4 +14,4 @@ data class Event (
     val price: Double? = null,
     val title: String? = null,
     val id: String? = null
-)
+): Parcelable

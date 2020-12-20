@@ -8,7 +8,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.events.fragment.EventDetailFragment">
+        tools:context=".view.event.fragment.EventDetailFragment">
 
         <ImageView
             android:id="@+id/fed_iv_profile_image"
@@ -107,7 +107,10 @@
                     android:scrollbars="none"
                     android:layout_marginBottom="8dp"
                     android:fillViewport="true"
-                    app:layout_constraintBottom_toTopOf="@+id/button2"
+                    android:overScrollMode="never"
+                    android:requiresFadingEdge="vertical"
+                    android:fadingEdgeLength="80dp"
+                    app:layout_constraintBottom_toTopOf="@+id/fed_btn_check_in"
                     app:layout_constraintEnd_toStartOf="@+id/guideline2"
                     app:layout_constraintStart_toStartOf="@+id/guideline"
                     app:layout_constraintTop_toBottomOf="@+id/fed_tv_description_label">
@@ -128,7 +131,7 @@
                 </ScrollView>
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/fed_btn_check_in"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
