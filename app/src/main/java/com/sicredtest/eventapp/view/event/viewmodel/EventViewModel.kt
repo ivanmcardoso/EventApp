@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.sicredtest.eventapp.data.model.CheckIn
 import com.sicredtest.eventapp.data.model.Event
 import com.sicredtest.eventapp.data.repository.EventRepository
+import com.sicredtest.eventapp.utils.TimeMapper
 import com.sicredtest.eventapp.utils.isEmailValid
 import com.sicredtest.eventapp.utils.isValid
 import kotlinx.coroutines.cancel
@@ -89,5 +90,10 @@ class EventViewModel(private val eventRepository: EventRepository) : ViewModel()
         isCheckInSuccess.value = false
         isCheckInLoading.value = false
         isCheckInFailure.value = false
+    }
+
+    fun getShareText(): String {
+        val selectedEvent = selectedEventLiveData.value
+        return "Venha participar do evento ${selectedEvent!!.title} em ${TimeMapper.getDateFromTimestamp(selectedEvent.date)} "
     }
 }

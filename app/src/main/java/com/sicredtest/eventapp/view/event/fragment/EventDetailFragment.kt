@@ -54,7 +54,8 @@ class EventDetailFragment : Fragment() {
     private fun shareEvent() {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+            val text = eventViewModel.getShareText()
+            putExtra(Intent.EXTRA_TEXT, text)
             type = "text/plain"
         }
 

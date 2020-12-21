@@ -6,6 +6,7 @@ import com.sicredtest.eventapp.data.model.CheckIn
 import com.sicredtest.eventapp.data.model.Event
 import com.sicredtest.eventapp.data.repository.EventRepository
 import com.sicredtest.eventapp.utils.MockitoHelper
+import com.sicredtest.eventapp.utils.TimeMapper
 import com.sicredtest.eventapp.utils.isEmailValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -107,6 +108,14 @@ class EventViewModelTest {
         assertEquals(eventViewModel.selectedEventLiveData.value, selectedEvent)
         assertNotNull(eventViewModel.checkInEventLiveData.value)
         assertEquals(eventViewModel.checkInEventLiveData.value?.eventId, selectedEvent.id)
+    }
+
+    @Test
+    fun validate_get_share_text() {
+        val selectedEvent = mock(Event::class.java)
+        eventViewModel.setSelectedEvent(selectedEvent)
+        assertTrue(eventViewModel.getShareText().contains("${selectedEvent.title}"))
+        assertTrue(eventViewModel.getShareText().contains("${TimeMapper.getDateFromTimestamp(selectedEvent.date)}"))
     }
 
 }
