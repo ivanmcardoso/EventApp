@@ -19,7 +19,7 @@ Caso o evento não possua uma imagem válida pra ser renderizada uma imagem padr
 
 
 <div>
-    <img src="assets/event_app_home.gif" 			alt="event_app_home" style="zoom:25%;" />
+    <img src="assets/event_app_home.gif" 			alt="event_app_home" width="200" height="400" />
 </div>
 
 #### 1.1 Falha ao carregar eventos
@@ -29,8 +29,8 @@ Se por algum motivo não for possivel carregar a lista de eventos um Snackbar  a
 Caso não seja possivel carregar a lista de eventos ao entrar na aplicação ou caso a lista de eventos venha vazia uma mensagem é renderizada para o usuário.
 
 <div>
-      <img src="assets/event_app_empty_list.gif" 			alt="event_app_empty_list" style="zoom:25%;" />
-    <img src="assets/evnt_app_failure.gif" 			alt="evnt_app_failure" style="zoom:25%;" />
+      <img src="assets/event_app_empty_list.gif" 			alt="event_app_empty_list" width="200" height="400" />
+    <img src="assets/evnt_app_failure.gif" 			alt="evnt_app_failure" width="200" height="400" />
 </div>
 
 ### 2. Detalhes do evento
@@ -42,7 +42,7 @@ Nesta tela são exibidos os detalhes do evento, além de dar ao usuário a opç�
 Esta funcionalidade permite ao usuário compartilhar um convite para o evento.
 
 <div>
-    <img src="assets/event_app_share.gif" 			alt="event_app_share" style="zoom:25%;" />
+    <img src="assets/event_app_share.gif" 			alt="event_app_share" width="200" height="400" />
 </div>
 
 
@@ -52,9 +52,9 @@ Esta funcionalidade permite ao usuário compartilhar um convite para o evento.
 Esta funcionalidade permite ao usuário realizar check-in no evento, exibindo uma mensagem de sucesso ou falha, baseado na resposta da api.
 
 <div>
-  <img src="assets/event_app_checkin_form.gif" alt="app_event_checkin_form" style="zoom:25%;" />
-    <img src="assets/app_event_checkin_success.gif" alt="app_event_checkin_success" style="zoom:25%;" />
-  <img src="assets/app_event_checkin_failure.gif" alt="app_event_checkin_failure" style="zoom:25%;" />
+  <img src="assets/event_app_checkin_form.gif" alt="app_event_checkin_form" width="200" height="400" />
+    <img src="assets/app_event_checkin_success.gif" alt="app_event_checkin_success" width="200" height="400" />
+  <img src="assets/app_event_checkin_failure.gif" alt="app_event_checkin_failure" width="200" height="400" />
 </div>
 
 ## Arquitetura
