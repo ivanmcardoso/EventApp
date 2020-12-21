@@ -1,5 +1,6 @@
 package com.sicredtest.eventapp.view.event.dialog
 
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.sicredtest.eventapp.R
@@ -48,6 +50,11 @@ class CheckInDialog() : DialogFragment() {
     private fun setupListeners() {
         dci_tiet_name.onTextChanged { eventViewModel.setName(it) }
         dci_tiet_email.onTextChanged { eventViewModel.setEmail(it) }
+        dci_tiet_email.setOnFocusChangeListener { v, hasFocus -> hideKeyboard(v, hasFocus) }
+        dci_tiet_name.setOnFocusChangeListener { v, hasFocus -> hideKeyboard(v, hasFocus) }
+
+
+
         dci_btn_cancel.setOnClickListener { dismiss() }
         dci_btn_confirm.setOnClickListener {
             eventViewModel.checkIn()
@@ -75,5 +82,13 @@ class CheckInDialog() : DialogFragment() {
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         eventViewModel.clearCheckIn()
+    }
+
+    private fun hideKeyboard(view: View, hasFocus: Boolean) {
+        if(!hasFocus) {
+            val hideBoard =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            hideBoard?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }
