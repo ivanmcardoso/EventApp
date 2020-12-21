@@ -52,9 +52,6 @@ class CheckInDialog() : DialogFragment() {
         dci_tiet_email.onTextChanged { eventViewModel.setEmail(it) }
         dci_tiet_email.setOnFocusChangeListener { v, hasFocus -> hideKeyboard(v, hasFocus) }
         dci_tiet_name.setOnFocusChangeListener { v, hasFocus -> hideKeyboard(v, hasFocus) }
-
-
-
         dci_btn_cancel.setOnClickListener { dismiss() }
         dci_btn_confirm.setOnClickListener {
             eventViewModel.checkIn()

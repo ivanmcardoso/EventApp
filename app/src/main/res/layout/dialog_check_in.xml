@@ -17,6 +17,7 @@
             android:id="@+id/dci_group_formView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             app:constraint_referenced_ids="dci_tv_title,
             dci_til_name,
             dci_til_email,
@@ -152,12 +153,11 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/dci_animation_view_failure"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/dci_tv_status_failure"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.292"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
