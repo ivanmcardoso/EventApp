@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:textSize="16sp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/secondaryColor"
                     app:layout_constraintEnd_toStartOf="@+id/guideline2"
                     app:layout_constraintTop_toTopOf="@id/fed_tv_title"
                     tools:text="R$99,99" />
@@ -147,16 +147,17 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/fed_ic_go_back"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fed_fab_go_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_arrow_back_white_24"
-            android:contentDescription="@string/ic_description_back" />
+            android:contentDescription="@string/ic_description_back"
+            android:focusable="true" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fed_fab_share"

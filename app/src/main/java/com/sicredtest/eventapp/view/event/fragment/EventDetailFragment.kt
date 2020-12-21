@@ -30,15 +30,21 @@ class EventDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         eventViewModel.selectedEventLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Picasso.get().load(it.image).into(fed_iv_profile_image)
+                Picasso.get().load(it.image).error(R.drawable.img_event_unavailable)
+                    .placeholder(R.drawable.img_event_unavailable).into(fed_iv_profile_image)
                 fed_tv_title.text = it.title
-                fed_tv_price.text =  "R$"+ DecimalFormat("#,###.00").format(it.price)
+                fed_tv_price.text = "R$" + DecimalFormat("#,###.00").format(it.price)
                 fed_tv_date.text = it.date?.let { date -> TimeMapper.getDateFromTimestamp(date) }
                 fed_tv_description.text = it.description
             }
         })
-        fed_ic_go_back.setOnClickListener { parentFragmentManager.popBackStack() }
-        fed_btn_check_in.setOnClickListener { CheckInDialog().show(parentFragmentManager, "CHECK_IN_DIALOG") }
+        fed_fab_go_back.setOnClickListener { parentFragmentManager.popBackStack() }
+        fed_btn_check_in.setOnClickListener {
+            CheckInDialog().show(
+                childFragmentManager ,
+                "CHECK_IN_DIALOG"
+            )
+        }
         fed_fab_share.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND

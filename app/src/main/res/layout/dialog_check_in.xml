@@ -10,6 +10,18 @@
         android:layout_height="match_parent"
         android:background="#00FFFFFF">
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/dci_group_formView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="dci_tv_title,
+            dci_til_name,
+            dci_til_email,
+            dci_cb_save_values,
+            dci_btn_confirm,
+            dci_btn_cancel" />
+
+
         <TextView
             android:id="@+id/dci_tv_title"
             android:layout_width="wrap_content"
@@ -84,7 +96,7 @@
             android:layout_marginBottom="32dp"
             android:background="#00FFFFFF"
             android:text="@string/cancel"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/secondaryColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -103,6 +115,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="24dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/dci_animation_view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/spinner_yellow" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/dci_animation_view_success"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/booking" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

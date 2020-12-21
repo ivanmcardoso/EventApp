@@ -4,6 +4,7 @@ import com.sicredtest.eventapp.data.remoteDataSource.EventRemoteDataSource
 import com.sicredtest.eventapp.data.repository.EventRepository
 import com.sicredtest.eventapp.data.service.ApiConfig
 import com.sicredtest.eventapp.view.event.viewmodel.EventViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val eventRemoteDataSource = module {
@@ -15,7 +16,7 @@ val eventRepositoryModule = module {
 }
 
 val eventViewModel = module {
-    single {
+    viewModel {
         EventViewModel(get())
     }
 }

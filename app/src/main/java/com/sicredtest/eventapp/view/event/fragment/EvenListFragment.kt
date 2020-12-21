@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.sicredtest.eventapp.R
 import com.sicredtest.eventapp.data.model.Event
+import com.sicredtest.eventapp.utils.ViewMapper
 import com.sicredtest.eventapp.view.event.adapter.EventAdapter
 import com.sicredtest.eventapp.view.event.viewmodel.EventViewModel
-import kotlinx.android.synthetic.main.fragment_even_list.*
+import kotlinx.android.synthetic.main.fragment_event_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EvenListFragment : Fragment() {
@@ -19,43 +19,65 @@ class EvenListFragment : Fragment() {
     private val eventViewModel by viewModel<EventViewModel>()
     private val eventList = mutableListOf<Event>()
     private val eventAdapter = EventAdapter(eventList) {
-        Toast.makeText(requireContext(), it.title, Toast.LENGTH_LONG).show()
-        eventViewModel.setSelectedEvent(it)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fl_main_activity_frame, EventDetailFragment())
-            .addToBackStack(null)
-            .commit()
+        setSelectedEvent(it)
+        goToEventDetailFragment()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_even_list, container, false)
+        return inflater.inflate(R.layout.fragment_event_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupEventList()
         setUpEventListWithRecyclerView()
+        setupRefresh()
+        setupObservers()
     }
 
-    private fun setUpEventListWithRecyclerView() {
-        rv_event_list.adapter = eventAdapter
+    private fun setupRefresh() {
+        fel_swipe_refresh.setOnRefreshListener { setupEventList() }
     }
 
-    private fun setupEventList() {
-        eventViewModel.fetchEvents().observe(viewLifecycleOwner, Observer {
+    private fun setupObservers() {
+        eventViewModel.eventsLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
                 updateEventRecycleView(it)
             }
+            fel_swipe_refresh.isRefreshing = false
+        })
+        eventViewModel.isEventsLoading.observe(viewLifecycleOwner, Observer {
+            fel_animation_view_loading.visibility = ViewMapper.mapBooleanToVisibility(it)
+            fel_rv_event_list.visibility = ViewMapper.mapBooleanToVisibility(!it)
         })
     }
 
-    private fun updateEventRecycleView(updatedEventList: List<Event>) {
-        eventList.clear()
-        eventList.addAll(updatedEventList)
-        eventAdapter.notifyDataSetChanged()
+    private fun setUpEventListWithRecyclerView() {
+        fel_rv_event_list.adapter = eventAdapter
     }
+
+    private fun setupEventList() {
+        eventViewModel.fetchEvents()
+    }
+
+    private fun updateEventRecycleView(updatedEventList: List<Event>) {
+        eventAdapter.clear()
+        eventAdapter.addAll(updatedEventList)
+    }
+
+    private fun goToEventDetailFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fl_main_activity_frame, EventDetailFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun setSelectedEvent(it: Event) {
+        eventViewModel.setSelectedEvent(it)
+    }
+
 
 }

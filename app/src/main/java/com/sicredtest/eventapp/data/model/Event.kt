@@ -5,7 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Event (
-    val people: List<CheckIn>? = null,
     val date: Long? = null,
     val description: String? = null,
     val image: String? = null,

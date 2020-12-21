@@ -3,10 +3,10 @@ package com.sicredtest.eventapp.data.repository
 import com.sicredtest.eventapp.data.model.CheckIn
 import com.sicredtest.eventapp.data.model.Event
 import com.sicredtest.eventapp.data.remoteDataSource.EventRemoteDataSource
-import okhttp3.ResponseBody
-import retrofit2.Response
 
 class EventRepository(private val EventRemoteDataSource: EventRemoteDataSource) {
+
+    var selectedEvent: Event? = null
 
     suspend fun getEvents(): List<Event>? {
         return try {
@@ -26,12 +26,12 @@ class EventRepository(private val EventRemoteDataSource: EventRemoteDataSource) 
         }
     }
 
-    suspend fun eventCheckIn(checkIn: CheckIn): Any? {
+    suspend fun eventCheckIn(checkIn: CheckIn): Boolean {
         return try {
-            var result = EventRemoteDataSource.eventCheckIn(checkIn)
-            result
+            val result = EventRemoteDataSource.eventCheckIn(checkIn)
+            return (result != null)
         } catch (ex: Exception) {
-            null
+            false
         }
     }
 }
