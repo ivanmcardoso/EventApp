@@ -50,6 +50,8 @@ class EvenListFragment : Fragment() {
                 fel_group_empty_list.visibility = ViewMapper.mapBooleanToVisibility(it.isEmpty())
             } ?: run {
                 showErrorMessage()
+                val shouldShowEmptyList = eventAdapter.itemCount == 0
+                fel_group_empty_list.visibility = ViewMapper.mapBooleanToVisibility(shouldShowEmptyList)
             }
             fel_swipe_refresh.isRefreshing = false
         })
