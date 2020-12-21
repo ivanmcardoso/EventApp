@@ -7,7 +7,7 @@
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="400dp"
         android:background="#00FFFFFF">
 
@@ -15,7 +15,6 @@
             android:id="@+id/dci_group_formView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             app:constraint_referenced_ids="dci_tv_title,
             dci_til_name,
             dci_til_email,
