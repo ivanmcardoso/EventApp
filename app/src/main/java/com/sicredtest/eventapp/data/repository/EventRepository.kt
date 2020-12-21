@@ -17,15 +17,6 @@ class EventRepository(private val EventRemoteDataSource: EventRemoteDataSource) 
         }
     }
 
-    suspend fun getEvent(id: Int): Event? {
-        return try {
-            var result = EventRemoteDataSource.getEventDetail(id)
-            result
-        } catch (ex: Exception) {
-            null
-        }
-    }
-
     suspend fun eventCheckIn(checkIn: CheckIn): Boolean {
         return try {
             val result = EventRemoteDataSource.eventCheckIn(checkIn)

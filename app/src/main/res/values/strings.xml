@@ -12,4 +12,8 @@
     <string name="save_values_text">Guardar informações</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">cancelar</string>
+    <string name="check_in_failure">Ops! Não foi possível realizar o check-in</string>
+    <string name="check_in_success">Check-in realizado com sucesso</string>
+    <string name="events_empty_list">Nenhum evento foi encontrado</string>
+    <string name="calendar">calendario</string>
 </resources>

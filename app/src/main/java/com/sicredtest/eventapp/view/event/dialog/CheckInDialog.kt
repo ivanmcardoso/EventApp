@@ -4,16 +4,14 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.sicredtest.eventapp.R
 import com.sicredtest.eventapp.utils.ViewMapper
-import com.sicredtest.eventapp.utils.isEmailValid
 import com.sicredtest.eventapp.utils.onTextChanged
 import com.sicredtest.eventapp.view.event.viewmodel.EventViewModel
 import kotlinx.android.synthetic.main.dialog_check_in.*
@@ -27,8 +25,15 @@ class CheckInDialog() : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        setupDialogParams()
         return inflater.inflate(R.layout.dialog_check_in, container, false)
+    }
+
+    private fun setupDialogParams() {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val params: WindowManager.LayoutParams? = dialog?.window?.attributes
+        params?.width = 500
+        dialog?.window?.attributes = params
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,6 +51,11 @@ class CheckInDialog() : DialogFragment() {
         })
         eventViewModel.isCheckInSuccess.observe(viewLifecycleOwner, Observer {
             dci_animation_view_success.visibility = ViewMapper.mapBooleanToVisibility(it)
+            dci_tv_status_success.visibility = ViewMapper.mapBooleanToVisibility(it)
+        })
+        eventViewModel.isCheckInFailure.observe(viewLifecycleOwner, Observer {
+            dci_animation_view_failure.visibility = ViewMapper.mapBooleanToVisibility(it)
+            dci_tv_status_failure.visibility = ViewMapper.mapBooleanToVisibility(it)
         })
         eventViewModel.isCheckInLoading.observe(viewLifecycleOwner, Observer {
             dci_animation_view_loading.visibility = ViewMapper.mapBooleanToVisibility(it)

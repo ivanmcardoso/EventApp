@@ -22,6 +22,7 @@ class EventViewModel(private val eventRepository: EventRepository) : ViewModel()
     val isEventsLoading = MutableLiveData(false)
     val isCheckInLoading = MutableLiveData(false)
     val isCheckInSuccess = MutableLiveData(false)
+    val isCheckInFailure = MutableLiveData(false)
 
     val isButtonEnable = MediatorLiveData<Boolean>().apply {
         addSource(isEmailValid) {
@@ -72,7 +73,9 @@ class EventViewModel(private val eventRepository: EventRepository) : ViewModel()
         val checkIn = checkInEventLiveData.value
         checkIn?.let {
             viewModelScope.launch {
-                isCheckInSuccess.value = eventRepository.eventCheckIn(it)
+                val eventCheckIn = eventRepository.eventCheckIn(it)
+                isCheckInSuccess.value = eventCheckIn
+                isCheckInFailure.value = !eventCheckIn
                 isCheckInLoading.value = false
             }
         } ?: run { isCheckInLoading.value = false }
@@ -85,5 +88,6 @@ class EventViewModel(private val eventRepository: EventRepository) : ViewModel()
         isEmailValid.value = false
         isCheckInSuccess.value = false
         isCheckInLoading.value = false
+        isCheckInFailure.value = false
     }
 }

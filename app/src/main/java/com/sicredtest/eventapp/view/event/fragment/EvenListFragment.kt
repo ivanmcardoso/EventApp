@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.sicredtest.eventapp.R
 import com.sicredtest.eventapp.data.model.Event
 import com.sicredtest.eventapp.utils.ViewMapper
@@ -46,6 +47,9 @@ class EvenListFragment : Fragment() {
         eventViewModel.eventsLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
                 updateEventRecycleView(it)
+                fel_group_empty_list.visibility = ViewMapper.mapBooleanToVisibility(it.isEmpty())
+            } ?: run {
+                showErrorMessage()
             }
             fel_swipe_refresh.isRefreshing = false
         })
@@ -53,6 +57,10 @@ class EvenListFragment : Fragment() {
             fel_animation_view_loading.visibility = ViewMapper.mapBooleanToVisibility(it)
             fel_rv_event_list.visibility = ViewMapper.mapBooleanToVisibility(!it)
         })
+    }
+
+    private fun showErrorMessage() {
+        Snackbar.make(fel_rv_event_list, "Falha ao carregar eventos", Snackbar.LENGTH_SHORT).show()
     }
 
     private fun setUpEventListWithRecyclerView() {
