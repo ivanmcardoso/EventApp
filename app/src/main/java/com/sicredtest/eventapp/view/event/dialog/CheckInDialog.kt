@@ -31,21 +31,31 @@ class CheckInDialog() : DialogFragment() {
 
     private fun setupDialogParams() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val params: WindowManager.LayoutParams? = dialog?.window?.attributes
-        params?.width = 500
-        dialog?.window?.attributes = params
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showForm()
+        setupListeners()
+        setupObservers()
+
+    }
+
+    private fun showForm() {
         dci_group_formView.visibility = ViewMapper.mapBooleanToVisibility(true)
-        dci_btn_cancel.setOnClickListener { dismiss() }
+    }
+
+    private fun setupListeners() {
         dci_tiet_name.onTextChanged { eventViewModel.setName(it) }
         dci_tiet_email.onTextChanged { eventViewModel.setEmail(it) }
+        dci_btn_cancel.setOnClickListener { dismiss() }
         dci_btn_confirm.setOnClickListener {
             eventViewModel.checkIn()
             dci_group_formView.visibility = ViewMapper.mapBooleanToVisibility(false)
         }
+    }
+
+    private fun setupObservers() {
         eventViewModel.isButtonEnable.observe(viewLifecycleOwner, Observer {
             dci_btn_confirm.isEnabled = it
         })
@@ -60,7 +70,6 @@ class CheckInDialog() : DialogFragment() {
         eventViewModel.isCheckInLoading.observe(viewLifecycleOwner, Observer {
             dci_animation_view_loading.visibility = ViewMapper.mapBooleanToVisibility(it)
         })
-
     }
 
     override fun onDismiss(dialog: DialogInterface) {
