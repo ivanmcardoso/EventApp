@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sicredtest.eventapp.R
 import com.sicredtest.eventapp.data.model.Event
 import com.sicredtest.eventapp.databinding.SingleListItemEventBinding
+import com.sicredtest.eventapp.utils.TimeMapper
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_event_detail.*
+import java.text.DecimalFormat
 
 class EventAdapter(
     private val eventList: MutableList<Event>,
@@ -20,8 +23,8 @@ class EventAdapter(
             Picasso.get().load(event.image).error(R.drawable.img_event_unavailable)
                 .placeholder(R.drawable.img_event_unavailable).into(binding.ivEventListItemImage)
             binding.tvEventListItemTitle.text = event.title
-            binding.tvEventListItemDate.text = event.date.toString()
-            binding.tvEventListItemPrice.text = event.price.toString()
+            binding.tvEventListItemDate.text = event.date?.let { date -> TimeMapper.getDateFromTimestamp(date) }
+            binding.tvEventListItemPrice.text =  "R$" + DecimalFormat("#,###.00").format(event.price)
             binding.root.setOnClickListener { onItemClick(event) }
         }
     }

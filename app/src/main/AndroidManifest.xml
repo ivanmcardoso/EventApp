@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.sicredtest.eventapp.view.event.activity.EventMainActivity">
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.sicredtest.eventapp.view.event.activity.EventMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
